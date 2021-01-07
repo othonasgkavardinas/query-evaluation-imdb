@@ -1,7 +1,7 @@
 # query-evaluation-imdb
 
-## Αλγόριθμος Αποτίμησης Συνενώσεων
-Aνάπτυξη και έλεγχος αλγορίθμων για αποτίμηση (evaluation) σύνθετων ερωτημάτων στη βάση δεδομένων του IMDB τα οποία περιλαμβάνουν συνενώσεις (joins)  
+## Join Operator Algorithm
+Development and testing of algorithms for evaluating complex queries in the IMDB database which include joins.
 
 ### /files
 Αssignment and report.
