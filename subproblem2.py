@@ -20,11 +20,13 @@ def generator(filename):
     file.close()
 
 def mj(iter1, iter2, columns1, columns2):
-
-    line1 = next(iter1).split("\t")
-    line2 = next(iter2).split("\t")
-    prev1 = [""]
-    prev2 = [""]
+    try:
+        line1 = next(iter1).split("\t")
+        line2 = next(iter2).split("\t")
+        prev1 = [""]
+        prev2 = [""]
+    except StopIteration:
+        return
 
     while True:
         try:
@@ -70,48 +72,44 @@ def main():
         print("Please insert: file file (column,...) (column,...)")
         sys.exit(1)
 
+    t1 = tuple([eval(x) for x in sys.argv[3].split(',')])
+    t2 = tuple([eval(x) for x in sys.argv[4].split(',')])
+
     file_output = open("outputX.tsv", "w")
     while True:
         try:
-            file_output.write(next(mj(scan(sys.argv[1]), scan(sys.argv[2]), sys.argv[3], sys.argv[4])))
+            file_output.write(next(mj(scan(sys.argv[1]), scan(sys.argv[2]), t1, t2)))
         except StopIteration:
             break
     file_output.close() 
 
 def test_main():
     
-    '''
     file_output1 = open("output_test1.tsv", "w")
     while True:
         try:
-            file_output1.write(next(mj(scan('title.basics.tsv'),scan('title.ratings.tsv'),(2),(1,2))))
-            #print(next(mj(scan('title.basics.tsv'),scan('title.ratings.tsv'),(2),(1,2))))
+            file_output1.write(next(mj(scan('data/title.basics.tsv'),scan('data/title.ratings.tsv'),(2),(1,2))))
         except StopIteration:
             break
     file_output1.close() 
-    '''
     
-    '''
     file_output2 = open("output_test2.tsv", "w")
     while True:
         try:
-            file_output2.write(next(mj(scan('title.basics.tsv'),scan('title.principals.tsv'),(2),(2))))
+            file_output2.write(next(mj(scan('data/title.basics.tsv'),scan('data/title.principals.tsv'),(2),(2))))
         except StopIteration:
             break
     file_output2.close() 
-    '''
 
-    '''
     file_output3 = open("output_test3.tsv", "w")
     while True:
         try:
-            file_output3.write(next(mj(mj(scan('title.basics.tsv'),scan('title.principals.tsv'),(2),(2)),scan('title.ratings.tsv'),(1,2),(1))))
+            file_output3.write(next(mj(mj(scan('data/title.basics.tsv'),scan('data/title.principals.tsv'),(2),(2)),scan('data/title.ratings.tsv'),(1,2),(1))))
         except StopIteration:
             break
     file_output3.close() 
-    '''
 
 start_time = time.time()
-#main()
-test_main()
+main()
+#test_main()
 print("total time: %s" %(time.time() - start_time))

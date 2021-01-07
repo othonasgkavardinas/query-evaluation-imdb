@@ -48,7 +48,7 @@ def main():
 	close_files(file_akas, file_basics, file_output)
 
 def open_files():
-	return (open("title.basics.tsv", "r"), open("title.akas.tsv", "r"),  open("output.tsv", "w"))
+	return (open("data/title.basics.tsv", "r"), open("data/title.akas.tsv", "r"),  open("output.tsv", "w"))
 
 def close_files(*files):
 	for file in files:
